@@ -98,10 +98,13 @@ done
 
 # r2modman support
 args=("$@")
-for arg in "${args[@]}"; do
-    if [[ "$arg" == "--r2profile" ]]; then
-		dynamic_args+=(--bind-try "${HOME}/.config/r2modmanPlus-local" "${HOME}/.config/r2modmanPlus-local")
-	fi
+for ((i=0; i<${#args[@]}; i++)); do
+    if [[ "${args[$i]}" == "--doorstop-target-assembly" ]]; then
+        assembly_path="${args[$((i+1))]}" # get full path
+        assembly_path="${assembly_path#*:}" # strip drive prefix
+        profile_path="${assembly_path%%/BepInEx/*}" # remove directories after BepInEx
+        dynamic_args+=(--bind-try "$profile_path" "$profile_path")
+    fi
 done
 
 
