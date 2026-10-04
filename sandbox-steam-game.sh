@@ -96,14 +96,30 @@ for path in "${compat_paths[@]}"; do
 done
 
 
-# r2modman support
+# r2modman / doorstop support
 args=("$@")
+is_r2modman=false
+for arg in "${args[@]}"; do
+    if [[ "$arg" == "--r2profile" ]]; then
+        is_r2modman=true
+        break
+    fi
+done
+
 for ((i=0; i<${#args[@]}; i++)); do
     if [[ "${args[$i]}" == "--doorstop-target-assembly" ]]; then
         assembly_path="${args[$((i+1))]}" # get full path
-        assembly_path="${assembly_path#*:}" # strip drive prefix
-        profile_path="${assembly_path%%/BepInEx/*}" # remove directories after BepInEx
-        dynamic_args+=(--bind-try "$profile_path" "$profile_path")
+        assembly_path="${assembly_path#*:}" # strip the Z: prefix
+
+        if [[ "$is_r2modman" == true ]]; then
+            # r2modman: bind the profile folder
+            profile_path="${assembly_path%%/BepInEx/*}"
+            dynamic_args+=(--bind-try "$profile_path" "$profile_path")
+        else
+            # otherwise bind the target assembly file
+            dynamic_args+=(--ro-bind-try "$assembly_path" "$assembly_path")
+        fi
+        break
     fi
 done
 
