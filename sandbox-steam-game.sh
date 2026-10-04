@@ -45,8 +45,6 @@ xdg-dbus-proxy \
 	--fd="$SYNC_FD" \
 	"$DBUS_SESSION_BUS_ADDRESS" "$SESSION_PROXY" \
 	--filter \
-	--talk=com.steampowered.* \
-	--talk=com.github.Matoking.protontricks.* \
 	\
 	unix:path=/run/dbus/system_bus_socket "$SYSTEM_PROXY" \
 	--filter \
