@@ -48,6 +48,7 @@ xdg-dbus-proxy \
 	--talk=com.github.Matoking.protontricks.* \
 	\
 	unix:path=/run/dbus/system_bus_socket "$SYSTEM_PROXY" \
+	--filter \
 	& dbus_proxy_pid=$!
 
 
