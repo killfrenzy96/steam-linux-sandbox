@@ -5,6 +5,7 @@ Experimental script that runs a Steam game inside a sandbox (Linux only).
 - Binds only the folders, devices, and files that the game needs to run. The home directory is mounted as a tmpfs, preventing the game from accessing your data.
 - Tested only on CachyOS, with a NVIDIA GPU.
 - Should work with any Steam game launched via Proton.
+- Still a work in progress. The script still binds a lot of your system libraries.
 
 ## Installation
 
