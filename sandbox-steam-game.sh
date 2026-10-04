@@ -96,6 +96,15 @@ for path in "${compat_paths[@]}"; do
 done
 
 
+# r2modman support
+args=("$@")
+for arg in "${args[@]}"; do
+    if [[ "$arg" == "--r2profile" ]]; then
+		dynamic_args+=(--bind-try "${HOME}/.config/r2modmanPlus-local" "${HOME}/.config/r2modmanPlus-local")
+	fi
+done
+
+
 # mkdir -p ${HOME}/Sandbox/steam-game/$SteamAppId
 bwrap \
 	--die-with-parent \
