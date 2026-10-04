@@ -1,4 +1,4 @@
-# sandbox-steam-game.sh
+# Info
 
 Experimental script that runs a Steam game inside a sandbox (Linux only).
 - Depends `bubblewrap` for the main sandbox, and `xdg-dbus-proxy` to isolate the dbus.
