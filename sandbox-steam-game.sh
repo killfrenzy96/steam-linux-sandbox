@@ -74,11 +74,6 @@ for bind in /dev/nvidia*; do
   [[ -e "$bind" ]] && dynamic_args+=(--dev-bind "$bind" "$bind")
 done
 
-for bind in ${HOME}/.config/gtk*; do
-  [[ -e "$bind" ]] && dynamic_args+=(--ro-bind "$bind" "$bind")
-done
-
-# custom binds
 for bind in /dev/hidraw*; do
   [[ -e "$bind" ]] && dynamic_args+=(--dev-bind "$bind" "$bind")
 done
