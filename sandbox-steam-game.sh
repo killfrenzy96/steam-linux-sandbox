@@ -128,9 +128,6 @@ done
 bwrap \
 	--die-with-parent \
 	--unshare-user \
-	--unshare-ipc \
-	--unshare-uts \   
-	--unshare-cgroup \
 	--tmpfs ${HOME} \
 	--ro-bind-try ${HOME}/.steam/bin ${HOME}/.steam/bin \
 	--ro-bind-try ${HOME}/.steam/bin32 ${HOME}/.steam/bin32 \
