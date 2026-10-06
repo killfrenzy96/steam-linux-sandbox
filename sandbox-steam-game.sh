@@ -124,7 +124,7 @@ for ((i=0; i<${#args[@]}; i++)); do
 done
 
 
-# mkdir -p ${HOME}/Sandbox/steam-game/$SteamAppId
+# strace -f -e trace=openat,open,stat,access -o /tmp/steam-game-trace.txt \
 bwrap \
 	--die-with-parent \
 	--unshare-user \
@@ -167,7 +167,16 @@ bwrap \
 	--ro-bind /usr/lib32 /lib32 \
 	--ro-bind /lib64 /lib64 \
 	--ro-bind /bin /bin \
-	--ro-bind /etc /etc \
+	--tmpfs /etc \
+	--ro-bind-try /etc/passwd /etc/passwd \
+	--ro-bind-try /etc/fonts /etc/fonts \
+	--ro-bind-try /etc/ld.so.cache /etc/ld.so.cache \
+	--ro-bind-try /etc/ld.so.conf.d /etc/ld.so.conf.d \
+	--ro-bind-try /etc/ld.so.preload /etc/ld.so.preload \
+	--ro-bind-try /etc/nvidia /etc/nvidia \
+	--ro-bind-try /etc/pulse /etc/pulse \
+	--ro-bind-try /etc/resolv.conf /etc/resolv.conf \
+	--ro-bind-try /etc/vulkan /etc/vulkan \
 	--setenv HOME ${HOME} \
 	--setenv XDG_RUNTIME_DIR "$XDG_RUNTIME_DIR" \
 	--setenv XDG_DATA_HOME ${HOME}/.local/share \
