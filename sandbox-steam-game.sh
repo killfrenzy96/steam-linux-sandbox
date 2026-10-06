@@ -168,8 +168,6 @@ bwrap \
 	--ro-bind /lib64 /lib64 \
 	--ro-bind /bin /bin \
 	--ro-bind /etc /etc \
-	--ro-bind ${HOME}/.config/dconf ${HOME}/.config/dconf \
-	--ro-bind ${HOME}/.config/mimeapps.list ${HOME}/.config/mimeapps.list \
 	--setenv HOME ${HOME} \
 	--setenv XDG_RUNTIME_DIR "$XDG_RUNTIME_DIR" \
 	--setenv XDG_DATA_HOME ${HOME}/.local/share \
