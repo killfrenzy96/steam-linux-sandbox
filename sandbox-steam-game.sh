@@ -136,9 +136,11 @@ bwrap \
 	--ro-bind-try ${HOME}/.steam/sdk32 ${HOME}/.steam/sdk32 \
 	--ro-bind-try ${HOME}/.steam/sdk64 ${HOME}/.steam/sdk64 \
 	--ro-bind-try ${HOME}/.steam/steam ${HOME}/.steam/steam \
+	--ro-bind-try ${HOME}/.cache/nvidia ${HOME}/.cache/nvidia \
 	--bind "$(pwd)" "$(pwd)" \
 	--ro-bind "$STEAM_RUNTIMES" "$STEAM_RUNTIMES" \
-	--bind "$STEAM_COMPAT_DATA_PATH" "$STEAM_COMPAT_DATA_PATH" \
+	--bind-try "$STEAM_COMPAT_DATA_PATH" "$STEAM_COMPAT_DATA_PATH" \
+	--bind-try "$STEAM_COMPAT_SHADER_PATH" "$STEAM_COMPAT_SHADER_PATH" \
 	--tmpfs "$XDG_RUNTIME_DIR" \
 	--ro-bind-try "$XDG_RUNTIME_DIR/wayland-0" "$XDG_RUNTIME_DIR/wayland-0" \
 	--ro-bind-try "$XDG_RUNTIME_DIR/pipewire-0" "$XDG_RUNTIME_DIR/pipewire-0" \
