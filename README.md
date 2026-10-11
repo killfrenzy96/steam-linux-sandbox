@@ -1,7 +1,7 @@
 # Info
 
 Experimental script that runs a Steam game inside a sandbox (Linux only).
-- Depends `bubblewrap` for the main sandbox, and `xdg-dbus-proxy` to isolate the dbus.
+- Depends on `bubblewrap` for the main sandbox, and `xdg-dbus-proxy` to isolate the dbus.
 - Binds only the folders, devices, and files that the game needs to run. The home directory is mounted as a tmpfs, preventing the game from accessing your data.
 - Tested only on CachyOS, with a NVIDIA GPU.
 - Should work with any Steam game launched via Proton.
