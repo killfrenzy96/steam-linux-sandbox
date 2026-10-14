@@ -134,6 +134,8 @@ bwrap \
 	--die-with-parent \
 	--unshare-user \
 	--tmpfs ${HOME} \
+	--ro-bind-try ${HOME}/.steam/steam.pid ${HOME}/.steam/steam.pid \
+	--ro-bind-try ${HOME}/.steam/steam.pipe ${HOME}/.steam/steam.pipe \
 	--ro-bind-try ${HOME}/.steam/bin ${HOME}/.steam/bin \
 	--ro-bind-try ${HOME}/.steam/bin32 ${HOME}/.steam/bin32 \
 	--ro-bind-try ${HOME}/.steam/bin64 ${HOME}/.steam/bin64 \
