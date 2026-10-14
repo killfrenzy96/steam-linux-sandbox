@@ -85,7 +85,7 @@ for bind in $XDG_RUNTIME_DIR/xauth*; do
   [[ -e "$bind" ]] && dynamic_args+=(--ro-bind "$bind" "$bind")
 done
 
-IFS=':' read -r -a compat_paths <<< "$LD_PRELOAD"
+IFS=':' read -r -a compat_paths <<< "$STEAM_LD_PRELOAD"
 for path in "${compat_paths[@]}"; do
   [[ -e "$path" ]] && dynamic_args+=(--ro-bind-try "$path" "$path")
 done
@@ -190,6 +190,5 @@ bwrap \
 	--setenv XDG_RUNTIME_DIR "$XDG_RUNTIME_DIR" \
 	--setenv XDG_DATA_HOME ${HOME}/.local/share \
 	--setenv LD_LIBRARY_PATH "$STEAM_LD_LIBRARY_PATH" \
+	--setenv LD_PRELOAD "$STEAM_LD_PRELOAD" \
 	"${@}"
-
-# --setenv LD_PRELOAD "$STEAM_LD_PRELOAD" \
