@@ -161,6 +161,7 @@ bwrap \
 	--dev /dev \
 	--dev-bind /dev/dri /dev/dri \
 	--dev-bind /dev/input /dev/input \
+	--dev-bind-try /dev/ntsync /dev/ntsync \
 	--dev-bind /dev/hugepages /dev/hugepages \
 	"${dynamic_args[@]}" \
 	--dev-bind /dev/snd /dev/snd \
