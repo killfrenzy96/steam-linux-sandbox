@@ -28,6 +28,11 @@ LD_LIBRARY_PATH=
 STEAM_LD_PRELOAD="$LD_PRELOAD"
 LD_PRELOAD=
 
+WORKING_DIRECTORY="$(pwd)"
+STEAM_APPS_PATH="${WORKING_DIRECTORY%%/common/*}"
+STEAM_WORKSHOP_PATH="$STEAM_APPS_PATH/workshop/content/$SteamAppId"
+echo "STEAM_WORKSHOP_PATH=$STEAM_WORKSHOP_PATH"
+
 
 # dbus proxy setup
 RANDOM_STRING=$(tr -dc 'A-Za-z' </dev/urandom | head -c 16)
@@ -124,7 +129,7 @@ for ((i=0; i<${#args[@]}; i++)); do
 done
 
 
-# strace -f -e trace=openat,open,stat,access -o /tmp/steam-game-trace.txt \
+# strace -f -e trace=openat,open,stat,access -o /tmp/trace.txt \
 bwrap \
 	--die-with-parent \
 	--unshare-user \
@@ -142,6 +147,7 @@ bwrap \
 	--ro-bind "$STEAM_RUNTIMES" "$STEAM_RUNTIMES" \
 	--bind-try "$STEAM_COMPAT_DATA_PATH" "$STEAM_COMPAT_DATA_PATH" \
 	--bind-try "$STEAM_COMPAT_SHADER_PATH" "$STEAM_COMPAT_SHADER_PATH" \
+	--ro-bind-try "$STEAM_WORKSHOP_PATH" "$STEAM_WORKSHOP_PATH" \
 	--tmpfs "$XDG_RUNTIME_DIR" \
 	--ro-bind-try "$XDG_RUNTIME_DIR/wayland-0" "$XDG_RUNTIME_DIR/wayland-0" \
 	--ro-bind-try "$XDG_RUNTIME_DIR/pipewire-0" "$XDG_RUNTIME_DIR/pipewire-0" \
@@ -184,5 +190,6 @@ bwrap \
 	--setenv XDG_RUNTIME_DIR "$XDG_RUNTIME_DIR" \
 	--setenv XDG_DATA_HOME ${HOME}/.local/share \
 	--setenv LD_LIBRARY_PATH "$STEAM_LD_LIBRARY_PATH" \
-	--setenv LD_PRELOAD "$STEAM_LD_PRELOAD" \
 	"${@}"
+
+# --setenv LD_PRELOAD "$STEAM_LD_PRELOAD" \
