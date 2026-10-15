@@ -132,6 +132,9 @@ done
 bwrap \
 	--die-with-parent \
 	--unshare-user \
+	--unshare-ipc \
+	--unshare-uts \
+	--unshare-cgroup \
 	--tmpfs ${HOME} \
 	--ro-bind-try ${HOME}/.steam/steam.pid ${HOME}/.steam/steam.pid \
 	--ro-bind-try ${HOME}/.steam/steam.pipe ${HOME}/.steam/steam.pipe \
