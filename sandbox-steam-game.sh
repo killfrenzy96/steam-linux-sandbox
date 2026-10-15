@@ -28,8 +28,7 @@ LD_LIBRARY_PATH=
 STEAM_LD_PRELOAD="$LD_PRELOAD"
 LD_PRELOAD=
 
-WORKING_DIRECTORY="$(pwd)"
-STEAM_APPS_PATH="${WORKING_DIRECTORY%%/common/*}"
+STEAM_APPS_PATH="${STEAM_COMPAT_INSTALL_PATH%%/common/*}"
 STEAM_WORKSHOP_PATH="$STEAM_APPS_PATH/workshop/content/$SteamAppId"
 echo "STEAM_WORKSHOP_PATH=$STEAM_WORKSHOP_PATH"
 
@@ -145,7 +144,7 @@ bwrap \
 	--ro-bind-try ${HOME}/.steam/steam ${HOME}/.steam/steam \
 	--bind-try ${HOME}/.cache/nvidia ${HOME}/.cache/nvidia \
 	--bind-try ${HOME}/.cache/mesa_shader_cache ${HOME}/.cache/mesa_shader_cache \
-	--bind "$(pwd)" "$(pwd)" \
+	--bind "$STEAM_COMPAT_INSTALL_PATH" "$STEAM_COMPAT_INSTALL_PATH" \
 	--ro-bind "$STEAM_RUNTIMES" "$STEAM_RUNTIMES" \
 	--bind-try "$STEAM_COMPAT_DATA_PATH" "$STEAM_COMPAT_DATA_PATH" \
 	--bind-try "$STEAM_COMPAT_SHADER_PATH" "$STEAM_COMPAT_SHADER_PATH" \
