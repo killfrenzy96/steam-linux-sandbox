@@ -154,7 +154,9 @@ bwrap \
 	--ro-bind-try "$STEAM_WORKSHOP_PATH" "$STEAM_WORKSHOP_PATH" \
 	--tmpfs "$XDG_RUNTIME_DIR" \
 	--ro-bind-try "$XDG_RUNTIME_DIR/wayland-0" "$XDG_RUNTIME_DIR/wayland-0" \
+	--ro-bind-try "$XDG_RUNTIME_DIR/wayland-1" "$XDG_RUNTIME_DIR/wayland-1" \
 	--ro-bind-try "$XDG_RUNTIME_DIR/pipewire-0" "$XDG_RUNTIME_DIR/pipewire-0" \
+	--ro-bind-try "$XDG_RUNTIME_DIR/pipewire-1" "$XDG_RUNTIME_DIR/pipewire-1" \
 	--ro-bind "$XDG_RUNTIME_DIR/pulse" "$XDG_RUNTIME_DIR/pulse" \
 	--ro-bind "$SESSION_PROXY" "$XDG_RUNTIME_DIR/bus" \
 	--ro-bind "$SYSTEM_PROXY" /run/dbus/system_bus_socket \
